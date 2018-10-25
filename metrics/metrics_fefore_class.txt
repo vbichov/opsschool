@@ -1,0 +1,60 @@
+prometheus
+=========
+
+1. go over https://prometheus.io/docs/introduction/overview/ 
+
+2. download and extract the latest tar.gz version of promehteus
+  https://prometheus.io/download/
+
+3. look at the prometheus-2.4.3.linux-amd64/prometheus.yml
+    and see that you have some basic understandig of default settings and scrape tartgets defined there
+    https://prometheus.io/docs/prometheus/latest/configuration/configuration/#%3Cscrape_config%3E
+
+4. run prometheus-2.4.3.linux-amd64/prometheus and open the gui (http://<yourhost>:9090)
+
+5. go over https://prometheus.io/docs/introduction/first_steps/
+
+6. play with the GUI:
+      - try querying `go_memstats_alloc_bytes_total` look at both the graph and console representations
+          do you understand why it is going up?
+
+      - go to `Status` and familiarize yourself with the diferent status pages
+           Where the TSDB stores data?
+           What user was used to build the binary that you're running?
+
+
+7. go to status->targets and open the currently monitored endpoint and familiarize yourself with the metircs exposed by prometheus
+
+grafana
+=======
+
+1. Download grafana 'Standalone Linux Binaries'
+  https://grafana.com/dashboards?platform=linux
+
+2. go over grafana-5.3.1/conf/defaults.ini and see that you have a basic understanding of the configuation options
+
+
+3. start grafana: grafana-5.3.1/bin/grafana-server
+
+4. go over the following resources:
+  http://docs.grafana.org/guides/getting_started/
+  https://www.youtube.com/watch?v=sKNZMtoSHN4&index=7&list=PLDGkOdUX1Ujo3wHw9-z5Vo12YLqXRjzg2
+  http://docs.grafana.org/guides/basic_concepts
+  http://docs.grafana.org/features/datasources/prometheus/
+  and add the prometheus as a datasource
+
+5. import promehteus status dashboard (id 3662)
+ http://docs.grafana.org/reference/export_import/
+
+
+6. make sure grafana exprots prometheus metrics:
+  http://docs.grafana.org/administration/metrics/
+
+7. edit prometheus-2.4.3.linux-amd64/prometheus.yml, and add a grafana job under scrape_configs (duplicate the prometheus job and change the relevant values)
+
+
+node_exporter
+============
+
+1. follow https://prometheus.io/docs/guides/node-exporter/
+

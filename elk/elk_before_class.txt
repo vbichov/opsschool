@@ -1,0 +1,108 @@
+Read 
+
+Logstash
+========
+
+1. download java 8 (latest version) from oracle 
+  https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+2. extract and set JAVA_HOME env var
+  export JAVA_HOME=<path to java>/jdk1.8.0_<latest>
+
+3. download logstash latest version:
+  https://www.elastic.co/downloads
+
+4. create conf file test.conf
+using stdin and stdout plugins:
+https://www.elastic.co/guide/en/logstash/current/plugins-inputs-stdin.html
+https://www.elastic.co/guide/en/logstash/current/plugins-outputs-stdout.html
+
+```
+input { 
+  stdin { } 
+}
+filter {
+}
+output {
+  stdout { codec => json }
+}
+```
+
+5. run logstash - try sending it some random message
+./bin/logstash -f ./1test.conf 
+
+6. try adding a kv filter 
+https://www.elastic.co/guide/en/logstash/current/plugins-filters-kv.html
+and sending the following message ip=1.2.3.4 error=REFUSED and see what happens
+What happens when `codec => json` is removed? 
+What is the default codec?
+
+7. go over https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html
+
+
+Optional:
+--------
+Logstash Pipeline Architecture:
+https://www.youtube.com/watch?v=FPLHS9Pmgk0
+
+
+Elasticsearch
+=============
+
+1. unless done alerady done so - downlad java 8 and export the JAVA_HOME environment variable
+
+2. download the tar.gz version of elasticseach from here:
+  https://www.elastic.co/downloads
+
+3. try running ./elasticsearch-6.4.2/bin/elasticsearch
+
+4. did you encountered any issues? - document, and fix them
+
+5. follow this 5 minute tutorial:
+https://github.com/elastic/elasticsearch/blob/v6.4.2/README.textile
+
+6. go over elasticsearch-6.4.2/config/elasticsearch.yml and see that you have a general understanding
+    of elasticsearch's configuration options
+
+
+(Optional)
+__________
+
+Elasticsearch architecture (advanced):
+https://www.elastic.co/videos/elasticsearch-from-the-bottom-up
+
+
+
+Kibaba
+======
+
+1. unless done alerady done so - downlad java 8 and export the JAVA_HOME environment variable
+
+2. download the tar.gz version of kibana from here:
+  https://www.elastic.co/downloads
+
+3. go over kibana-6.4.2-linux-x86_64/config.yml and see that you have basic understanding of the configuration options there
+
+4. in kibana-6.4.2-linux-x86_64/config.yml make sure  `elasticsearch.url` points to elasticsarch
+
+5. statrt ./kibana-6.4.2-linux-x86_64/bin/kibana make sure no errors in the stdout log
+
+6. go over the Getting Started gide in kibana:
+https://www.elastic.co/guide/en/kibana/current/getting-started.html
+
+(Optional)
+---------
+7. go back to logstash configuration and change output from stdout to elasticsearch
+https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html
+
+8. send some messages to logstash and find them in kibana
+
+Kibana visualizations explained:
+https://www.youtube.com/watch?v=j-eCKDhj-Os&t=36s
+https://www.youtube.com/watch?v=_CLLOeoK-ZY&t=64s
+
+
+Technical debt:
+---------------
+- automate deployment
+- install elasticsearch as a cluster

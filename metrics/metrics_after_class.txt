@@ -1,0 +1,10 @@
+1. read how node_exporter can export custom metrics and export aws availablity zone and instance type
+
+3. 
+
+
+Optional:
+PromQL:
+https://www.youtube.com/watch?v=MPH2kMi6wyM
+https://www.youtube.com/watch?v=evPYwNzoltU (first 25 minutes)
+https://www.youtube.com/watch?v=PDxcEzu62jk&t=1353s (first 20 min)

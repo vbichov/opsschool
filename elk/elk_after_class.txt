@@ -1,0 +1,12 @@
+1. connect elasticsearch as a datasource in grafana
+    http://docs.grafana.org/features/datasources/
+
+2. install filebeat to collect granfa and prometheus logs and send them to elasticsearch
+
+3. install elasticsearch_exporter and configure prometheus to scrape elasticsearch metrics
+    create/download a dashboard in grafana that will show status of elasticsearch cluster
+
+4. install kibana-promehteus-exporter https://github.com/pjhampton/kibana-prometheus-exporter/releases
+   create/download a dashboard in grafana that will sohw status of kibana
+
+
