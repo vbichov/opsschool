@@ -1,3 +1,5 @@
+The following tasks should be executed on a standard distribution of linux (debian or red hat) preferably on an instance in AWS
+
 prometheus
 =========
 
@@ -43,7 +45,7 @@ grafana
   http://docs.grafana.org/features/datasources/prometheus/
   and add the prometheus as a datasource
 
-5. import promehteus status dashboard (id 3662)
+5. import promehteus status dashboard (from https://grafana.com/dashboards ) (id 3662)
  http://docs.grafana.org/reference/export_import/
 
 
@@ -56,5 +58,7 @@ grafana
 node_exporter
 ============
 
-1. follow https://prometheus.io/docs/guides/node-exporter/
+1. follow https://prometheus.io/docs/guides/node-exporter/ (install it add it to promehteus)
+
+2. go to https://grafana.com/dashboards find a sutable dashboard and import it into grafana
 
