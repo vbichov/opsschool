@@ -1,7 +1,10 @@
 1. read how node_exporter can export custom metrics and export aws availablity zone and instance type
 
-3. 
+2. if not done already - productize the sevices (grafana, promehtus and node_exporter) 
 
+3. create a dashboard in grafana that has a similar view:
+    https://drive.google.com/file/d/1ufYLwoYVzyjGupH1vGoiqJIhHdc0Ud40/view?usp=sharing
+   when done - export the dashboard and upload the generated json
 
 Optional:
 PromQL:
