@@ -1,6 +1,6 @@
 
 In this session we're going to use the elastic stack to collect logs from grafana
-This installation will be used in the rest of the course in order to collect logs
+This installation will be used in the rest of the course in order to collect logs from various systems
 
 
 Please set up an AWS instance and install the elastic stack on it
