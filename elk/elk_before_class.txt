@@ -1,108 +1,14 @@
-Read 
 
-Logstash
-========
-
-1. download java 8 (latest version) from oracle 
-  https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-
-2. extract and set JAVA_HOME env var
-  export JAVA_HOME=<path to java>/jdk1.8.0_<latest>
-
-3. download logstash latest version:
-  https://www.elastic.co/downloads
-
-4. create conf file test.conf
-using stdin and stdout plugins:
-https://www.elastic.co/guide/en/logstash/current/plugins-inputs-stdin.html
-https://www.elastic.co/guide/en/logstash/current/plugins-outputs-stdout.html
-
-```
-input { 
-  stdin { } 
-}
-filter {
-}
-output {
-  stdout { codec => json }
-}
-```
-
-5. run logstash - try sending it some random message
-./bin/logstash -f ./1test.conf 
-
-6. try adding a kv filter 
-https://www.elastic.co/guide/en/logstash/current/plugins-filters-kv.html
-and sending the following message ip=1.2.3.4 error=REFUSED and see what happens
-What happens when `codec => json` is removed? 
-What is the default codec?
-
-7. go over https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html
+In this session we're going to use the elastic stack to collect logs from grafana
+This installation will be used in the rest of the course in order to collect logs
 
 
-Optional:
---------
-Logstash Pipeline Architecture:
-https://www.youtube.com/watch?v=FPLHS9Pmgk0
+Please set up an AWS instance and install the elastic stack on it
 
+There is a pluralsight lecture that explains how to do that
+https://app.pluralsight.com/library/courses/centralized-logging-elastic-stack/
 
-Elasticsearch
-=============
+If you're not a fan of ubuntu/debian - there are plenty of ther resources that explain how to do that.
 
-1. unless done alerady done so - downlad java 8 and export the JAVA_HOME environment variable
-
-2. download the tar.gz version of elasticseach from here:
-  https://www.elastic.co/downloads
-
-3. try running ./elasticsearch-6.4.2/bin/elasticsearch
-
-4. did you encountered any issues? - document, and fix them
-
-5. follow this 5 minute tutorial:
-https://github.com/elastic/elasticsearch/blob/v6.4.2/README.textile
-
-6. go over elasticsearch-6.4.2/config/elasticsearch.yml and see that you have a general understanding
-    of elasticsearch's configuration options
-
-
-(Optional)
-__________
-
-Elasticsearch architecture (advanced):
-https://www.elastic.co/videos/elasticsearch-from-the-bottom-up
-
-
-
-Kibaba
-======
-
-1. unless done alerady done so - downlad java 8 and export the JAVA_HOME environment variable
-
-2. download the tar.gz version of kibana from here:
-  https://www.elastic.co/downloads
-
-3. go over kibana-6.4.2-linux-x86_64/config.yml and see that you have basic understanding of the configuration options there
-
-4. in kibana-6.4.2-linux-x86_64/config.yml make sure  `elasticsearch.url` points to elasticsarch
-
-5. statrt ./kibana-6.4.2-linux-x86_64/bin/kibana make sure no errors in the stdout log
-
-6. go over the Getting Started gide in kibana:
-https://www.elastic.co/guide/en/kibana/current/getting-started.html
-
-(Optional)
----------
-7. go back to logstash configuration and change output from stdout to elasticsearch
-https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html
-
-8. send some messages to logstash and find them in kibana
-
-Kibana visualizations explained:
-https://www.youtube.com/watch?v=j-eCKDhj-Os&t=36s
-https://www.youtube.com/watch?v=_CLLOeoK-ZY&t=64s
-
-
-Technical debt:
----------------
-- automate deployment
-- install elasticsearch as a cluster
+If you have issues setting up instances in AWS please let me know (@vitalyb on slack) Yaron had built have a cloudformation that will set up the hosts here:
+https://github.com/ops-school/opsschool-cloudformation/blob/master/opsschool_cloudformation_monitoring.yaml
