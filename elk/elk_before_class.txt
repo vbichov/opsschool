@@ -12,3 +12,15 @@ If you're not a fan of ubuntu/debian - there are plenty of ther resources that e
 
 If you have issues setting up instances in AWS please let me know (@vitalyb on slack) Yaron had built have a cloudformation that will set up the hosts here:
 https://github.com/ops-school/opsschool-cloudformation/blob/master/opsschool_cloudformation_monitoring.yaml
+
+
+After the ELK stack is installed go over the following:
+
+Logstash
+go over https://www.elastic.co/guide/en/logstash/current/first-event.html and try playing with it
+
+Elasticsearch
+do the 5 minute wlak thru https://github.com/elastic/elasticsearch/blob/v6.4.2/README.textile
+
+Kibana
+watch https://www.elastic.co/webinars/getting-started-kibana to understand how to visualize and create dashboards
