@@ -1,12 +1,61 @@
-1. connect elasticsearch as a datasource in grafana
-    http://docs.grafana.org/features/datasources/
+this task assumes that you've successfully used the pluralsight (or any other resource) to install a working elk stack. if not - please contact me.
 
-2. install filebeat to collect granfa and prometheus logs and send them to elasticsearch
+kibana and elasticsearch services should be running, losgstash service should not.
 
-3. install elasticsearch_exporter and configure prometheus to scrape elasticsearch metrics
-    create/download a dashboard in grafana that will show status of elasticsearch cluster
+all logstash example configurations located in logstash_examples
+all filebeat example configurations located in filebeat_examples
 
-4. install kibana-promehteus-exporter https://github.com/pjhampton/kibana-prometheus-exporter/releases
-   create/download a dashboard in grafana that will sohw status of kibana
+At the end of this flow you are expeced to create a visualization that counts different log levels of grafana.
 
+1. run logstash with the `stdin_stdout.conf`
+   bin/logstash -f stdin_stdout.conf
+  
+   play with it a bit, try sending values in key value format (mygost=casper car=ferrary)
+   read about logstash stdin and stdout plugins:
+   https://www.elastic.co/guide/en/logstash/current/input-plugins.html
+   https://www.elastic.co/guide/en/logstash/current/output-plugins.html
+
+2. run logstash with the `stdin_kv_stdout.conf`
+   bin/logstash -f stdin_kv_stdout.conf
+   
+   try sending the same (or similar) input. Try sending values in key value format
+
+   read about kv filter plugin
+   https://www.elastic.co/guide/en/logstash/current/filter-plugins.html
+
+
+3. make sure elasticsearch and kibana are working
+   point the elasticsearch output plugin in stdin_kv_stdout_elastic.conf to relevant installation of elasticsearch
+   run logstash with the `stdin_kv_stdout_elastic.conf`
+   send some key value events (I.E. foo=bar ip=1.2.3.4)
+   send some non key value events (I.E. brown dog ate yello chicken)
+   try finding those events in the discover tab using the query syntax
+   https://www.elastic.co/guide/en/elasticsearch/reference/6.x/query-dsl-query-string-query.html#query-string-syntax
+
+4. download filebeat (feel free to use whatever version you're comfortable    ether deb/rpm or tar.gz) on an instance with running grafana
+
+5. run filebeat with `stdin_stdout.yml`
+   ./filebeat run -c stdin_stdout.yml
+   try sending it some messages and see what it returns
+   notice the speed at which it starts up
+
+6. sending events to elastic with filebeat:
+   fix the location of elastic in `stdin_elastic.yml` and run filebeat with   this configuration
+   try sending some events and search them in kibana
+
+7. configure logstash to receive input events from  beats (see beats_kb_stdout_elastic.conf) and send them to elastic
+   configure filebeat to send events to logstash (see stdin_logstash.conf)
+   send some events thru beats and find them in kibana
+
+8. the destination of this journey:
+   find where grafana logs are kept.
+   notice that most of the logs are in key value format.
+   configure filebeat to read those logs and send them to losgstash which in turn will send them to elastic
+
+9. find the grafana logs in kibana.
+   create a visualization over those logs 
+   for instance a pie chart that shows different log levels received from grafana
+
+
+=============
 
